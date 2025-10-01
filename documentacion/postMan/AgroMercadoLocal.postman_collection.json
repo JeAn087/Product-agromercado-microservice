@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "9a8654e2-db6f-425f-b244-cd21b27736f1",
+		"name": "AgroMercadoLocal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34041440"
+	},
+	"item": [
+		{
+			"name": "MicroProductos",
+			"item": [
+				{
+					"name": "Productos",
+					"item": [
+						{
+							"name": "GetProducto",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9090/api/producto/1",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ListarTodosProductos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9090/api/producto/listProducts",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto",
+										"listProducts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agregar Producto con categoria existente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"productName\": \"Sandías\",\r\n        \"productCategory\": [\r\n            {\r\n                \"categoryId\": 1,\r\n                \"categoryName\": \"Frutas\",\r\n                \"categoryDescription\": \"Orgánicas de la zona del patía\"\r\n            }\r\n        ],\r\n        \"productDisposition\": {\r\n            \"disponible\": true,\r\n            \"stock\": 10\r\n        },\r\n        \"productDescription\": \"Grandes\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9090/api/producto",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categorías",
+					"item": [
+						{
+							"name": "GetCategoria",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"productName\": \"Sandías\",\r\n        \"productCategory\": [\r\n            {\r\n                \"categoryId\": 1,\r\n                \"categoryName\": \"Frutas\",\r\n                \"categoryDescription\": \"Orgánicas de la zona del patía\"\r\n            }\r\n        ],\r\n        \"productDisposition\": {\r\n            \"disponible\": true,\r\n            \"stock\": 10\r\n        },\r\n        \"productDescription\": \"Grandes\"\r\n    }"
+								},
+								"url": {
+									"raw": "localhost:9090/api/categoria/1",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"categoria",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Categorias",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9090/api/categoria/listCategorias",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"categoria",
+										"listCategorias"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agregar Categoria",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryName\": \"Hortalizas\",\r\n    \"categoryDescription\": \"Fresquitas\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9090/api/categoria",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"categoria"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
