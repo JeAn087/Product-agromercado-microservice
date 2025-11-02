@@ -41,7 +41,7 @@ public class ProductEntity {
         inverseJoinColumns = @jakarta.persistence.JoinColumn(name = "categoryId"))
     private List<CategoryEntity> productCategory;/**Uso del agregado*/
 
-    @OneToOne(mappedBy = "producto", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private DisponibilidadEntity productDisposition;/**Uso del objeto de valor*/
     
     private String productDescription;/**Descripcion del producto */

@@ -22,12 +22,12 @@ public class GestionProductosAdapter implements GestionProductosPort{
 
     private final GestionProductosGateway gatewayProductos;
 
-    
-
     public GestionProductosAdapter(GestionProductosGateway gatewayProductos) {
         this.gatewayProductos = gatewayProductos;
     }
-
+    /**
+     * Agrega un producto
+     */
     @Override
     public Producto agregarProducto(Producto prmNuevoProducto) {
         return gatewayProductos.agregarProducto(prmNuevoProducto);
@@ -35,6 +35,12 @@ public class GestionProductosAdapter implements GestionProductosPort{
 
     @Override
     public Producto actualizarProducto(Long prmIdProducto, Producto prmProductoActualizado) {
+         //Verificar que cuando se actualiza un producto, el stock sea positivo;
+        if(prmProductoActualizado.verificarStock() == false)
+        {
+            System.out.println("No se pudo agregar el producto");
+            return null;
+        }
         return gatewayProductos.actualizarProducto(prmIdProducto, prmProductoActualizado);
     }
 
@@ -49,8 +55,8 @@ public class GestionProductosAdapter implements GestionProductosPort{
     }
 
     @Override
-    public Producto deshabilitarProducto(Long prmIdProducto) {
-        return gatewayProductos.deshabilitarProducto(prmIdProducto);
+    public Producto cambiarDisponibilidad(Long prmIdProducto) {
+        return gatewayProductos.cambiarDisponibilidad(prmIdProducto);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.unicauca.edu.co.microservicio_gestion_productos.infraestructura.input.DTOPeticion;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -11,18 +13,8 @@ import lombok.Setter;
  */
 
 @Getter
-@Setter
+@Setter @AllArgsConstructor @NoArgsConstructor
 public class DTODisponibilidadPeticion {
-    private final boolean disponible;/**Permite ver si un producto está disponible o no*/
-    private final int stock;/**Cantidad de productos disponibles*/
-
-    public DTODisponibilidadPeticion(boolean disponible, int stock) {
-        //TO DO hacer que se valide automáticamente
-        if (stock < 0) throw new IllegalArgumentException("El stock no puede ser negativo");/*Validación que nos obliga a tener un stock positivo (momentánea) */
-        this.disponible = disponible;
-        this.stock = stock;
-    }
-
-    
-
+    private boolean disponible;/**Permite ver si un producto está disponible o no*/
+    private int stock;/**Cantidad de productos disponibles*/
 }

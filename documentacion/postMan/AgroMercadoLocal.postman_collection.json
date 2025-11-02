@@ -18,7 +18,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:9090/api/producto/1",
+									"raw": "localhost:9090/api/producto/consultar/1",
 									"host": [
 										"localhost"
 									],
@@ -26,6 +26,7 @@
 									"path": [
 										"api",
 										"producto",
+										"consultar",
 										"1"
 									]
 								}
@@ -38,7 +39,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:9090/api/producto/listProducts",
+									"raw": "localhost:9090/api/producto/consultar",
 									"host": [
 										"localhost"
 									],
@@ -46,7 +47,7 @@
 									"path": [
 										"api",
 										"producto",
-										"listProducts"
+										"consultar"
 									]
 								}
 							},
@@ -59,7 +60,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"productName\": \"Sandías\",\r\n        \"productCategory\": [\r\n            {\r\n                \"categoryId\": 1,\r\n                \"categoryName\": \"Frutas\",\r\n                \"categoryDescription\": \"Orgánicas de la zona del patía\"\r\n            }\r\n        ],\r\n        \"productDisposition\": {\r\n            \"disponible\": true,\r\n            \"stock\": 10\r\n        },\r\n        \"productDescription\": \"Grandes\"\r\n    }",
+									"raw": "{\r\n        \"productName\": \"Sandías\",\r\n        \"productCategory\": [\r\n            {\r\n                \"categoryId\": 1,\r\n                \"categoryName\": \"Frutas\",\r\n                \"categoryDescription\": \"Orgánicas de la zona del patía\"\r\n            }\r\n        ],\r\n        \"productDescription\": \"Grandes\"\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -67,14 +68,78 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:9090/api/producto",
+									"raw": "localhost:9090/api/producto/agregar",
 									"host": [
 										"localhost"
 									],
 									"port": "9090",
 									"path": [
 										"api",
-										"producto"
+										"producto",
+										"agregar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ActualizarProductos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"productName\": \"Sandías\",\r\n        \"productCategory\": [\r\n            {\r\n                \"categoryId\": 1,\r\n                \"categoryName\": \"Frutas\",\r\n                \"categoryDescription\": \"Orgánicas de la zona del patía\"\r\n            }\r\n        ],\r\n        \"productDisposition\":\r\n        {\r\n            \"disponible\": true,\r\n            \"stock\": 15\r\n        },\r\n        \"productDescription\": \"Grandes\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9090/api/producto/actualizar/1",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto",
+										"actualizar",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CambiarDisponibilidad",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9090/api/producto/cambiarDisponibilidad/2",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto",
+										"cambiarDisponibilidad",
+										"2"
 									]
 								}
 							},

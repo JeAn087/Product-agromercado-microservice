@@ -16,7 +16,10 @@ import com.unicauca.edu.co.microservicio_gestion_productos.infraestructura.input
 import com.unicauca.edu.co.microservicio_gestion_productos.infraestructura.input.DTORespuesta.DTOProductoRespuesta;
 import com.unicauca.edu.co.microservicio_gestion_productos.infraestructura.input.Mapper.ProductoInfraDominioMapper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -40,7 +43,7 @@ public class ProductoController {
         this.productoMapper = productoMapper;
     }
 
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<DTOProductoRespuesta> agregarProducto(@RequestBody DTOProductoPeticion bodyPeticion)
     {
         Producto objProductoMapeado = productoMapper.mapearDePeticionAProducto(bodyPeticion);
@@ -52,7 +55,28 @@ public class ProductoController {
         return respuesta;
     }
 
-    @GetMapping("/listProducts")
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<DTOProductoRespuesta> actualizarProducto(@PathVariable Long id, @RequestBody DTOProductoPeticion bodyPeticion) {
+        Producto objProductoMapeado = productoMapper.mapearDePeticionAProducto(bodyPeticion);
+        Producto actualizado = productoService.actualizarProducto(id, objProductoMapeado);
+        ResponseEntity<DTOProductoRespuesta> respuesta = new ResponseEntity<DTOProductoRespuesta>(
+            productoMapper.mapearDeProductoARespuesta(actualizado),
+            HttpStatus.ACCEPTED
+        );
+        return respuesta;
+    }
+
+    @PatchMapping("/cambiarDisponibilidad/{id}")
+    public ResponseEntity<DTOProductoRespuesta> cambiarDisponibilidad(@PathVariable Long id) {
+        Producto deshabilitado = productoService.cambiarDisponibilidad(id);
+        ResponseEntity<DTOProductoRespuesta> respuesta = new ResponseEntity<DTOProductoRespuesta>(
+            productoMapper.mapearDeProductoARespuesta(deshabilitado),
+            HttpStatus.ACCEPTED
+        );
+        return respuesta;
+    }
+
+    @GetMapping("/consultar")
     public ResponseEntity<List<DTOProductoRespuesta>> listarProductos() {
         List<Producto> productosEncontrados = productoService.listarProductos();
         ResponseEntity<List<DTOProductoRespuesta>> respuesta = new ResponseEntity<>(
@@ -62,7 +86,7 @@ public class ProductoController {
         return respuesta;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/consultar/{id}")
     public ResponseEntity<DTOProductoRespuesta> obtenerProductoPorId(@PathVariable Long id) {
         Producto productoEncontrado = productoService.obtenerProductoPorId(id);
         ResponseEntity<DTOProductoRespuesta> respuesta = new ResponseEntity<>(
@@ -71,9 +95,4 @@ public class ProductoController {
         );
         return respuesta;
     }
-    
-
-    
-    
-        
 }

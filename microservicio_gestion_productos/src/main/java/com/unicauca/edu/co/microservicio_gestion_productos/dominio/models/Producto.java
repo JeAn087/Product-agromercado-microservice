@@ -24,4 +24,22 @@ public class Producto {
     private Disponibilidad productDisposition;/**Uso del objeto de valor*/
     private String productDescription;/**Descripcion del producto */
 
+    /**
+     * Método que permite virificar que el stock sea positivo
+     * @return true si el el stock es positivo
+     */
+    public boolean verificarStock()
+    {
+        boolean isStockPositivo = false;
+
+        if(this.productDisposition.getStock() <= 0)
+        {
+            throw new RuntimeException("El stock del producto debe ser positivo y mayor a cero");
+        }
+
+        isStockPositivo = true;
+
+        return isStockPositivo;
+    }
+
 }

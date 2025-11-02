@@ -24,4 +24,9 @@ public class Disponibilidad {
     {
         this.stock = prmStock;
     }
+
+    public boolean changeDisposition(boolean prmDisponibility)
+    {
+        return !prmDisponibility;
+    }
 }

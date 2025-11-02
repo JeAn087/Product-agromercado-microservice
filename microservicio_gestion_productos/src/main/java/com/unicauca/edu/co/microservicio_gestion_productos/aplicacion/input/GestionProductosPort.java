@@ -21,5 +21,5 @@ public interface GestionProductosPort {
 
     List<Producto> listarProductos();
 
-    Producto deshabilitarProducto(Long prmIdProducto);
+    Producto cambiarDisponibilidad(Long prmIdProducto);
 }

@@ -45,6 +45,7 @@ public class ProductoGatewayAdapter implements GestionProductosGateway {
         DisponibilidadEntity objDisponibilidad = new DisponibilidadEntity();
         objDisponibilidad.setDisponible(true);
         objDisponibilidad.setStock(1);
+        objDisponibilidad.setProducto(objProductoMapeado);//asociar llave del producto
         objProductoMapeado.setProductDisposition(objDisponibilidad);
         ProductEntity productoGuardado = BDProductoRegister.save(objProductoMapeado);
         Producto productoRetornado = productMapper.map(productoGuardado, Producto.class);
@@ -53,11 +54,12 @@ public class ProductoGatewayAdapter implements GestionProductosGateway {
 
     @Override
     public Producto actualizarProducto(Long prmIdProducto, Producto prmProductoActualizado) {
-        if (!BDProductoRegister.existsById(prmIdProducto)) {
-            throw new RuntimeException("El producto con id: " + prmIdProducto + " no existe");
-        }
-        ProductEntity objProductoMapeado = productMapper.map(prmProductoActualizado, ProductEntity.class);
-        ProductEntity productoGuardado = BDProductoRegister.save(objProductoMapeado);
+          //Verificar existencia
+    ProductEntity productoExistente = BDProductoRegister.findById(prmIdProducto)
+        .orElseThrow(() -> new RuntimeException("El producto con id: " + prmIdProducto + " no existe"));
+
+        productMapper.map(prmProductoActualizado, productoExistente);//Mapear el producto actualizado en la variable de producto existente
+        ProductEntity productoGuardado = BDProductoRegister.save(productoExistente);
         Producto productoRetornado = productMapper.map(productoGuardado, Producto.class);
         return productoRetornado;
     }
@@ -78,14 +80,13 @@ public class ProductoGatewayAdapter implements GestionProductosGateway {
     }
 
     @Override
-    public Producto deshabilitarProducto(Long prmIdProducto) {
-        ProductEntity productoBDById = BDProductoRegister.findById(prmIdProducto)
-            .orElseThrow(() -> new RuntimeException("El producto con id: " + prmIdProducto + " no existe"));
-        DisponibilidadEntity objDisponibilidad = new DisponibilidadEntity();
-        objDisponibilidad.setDisponible(false);
-        objDisponibilidad.setStock(0);
-        productoBDById.setProductDisposition(objDisponibilidad);
-        ProductEntity productoGuardado = BDProductoRegister.save(productoBDById);
+    public Producto cambiarDisponibilidad(Long prmIdProducto) {
+             //Verificar existencia
+    ProductEntity productoExistente = BDProductoRegister.findById(prmIdProducto)
+        .orElseThrow(() -> new RuntimeException("El producto con id: " + prmIdProducto + " no existe"));
+        boolean disponibilidad = productoExistente.getProductDisposition().isDisponible();
+        productoExistente.getProductDisposition().setDisponible(!disponibilidad);
+        ProductEntity productoGuardado = BDProductoRegister.save(productoExistente);
         Producto productoRetornado = productMapper.map(productoGuardado, Producto.class);
         return productoRetornado;
     }

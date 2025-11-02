@@ -21,6 +21,6 @@ public interface GestionProductosGateway {
 
     List<Producto> listarProductos();
 
-    Producto deshabilitarProducto(Long prmIdProducto);
+    Producto cambiarDisponibilidad(Long prmIdProducto);
 
 }

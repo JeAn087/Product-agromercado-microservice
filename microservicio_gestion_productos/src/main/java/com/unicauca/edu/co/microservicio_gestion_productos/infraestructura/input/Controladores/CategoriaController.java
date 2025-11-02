@@ -30,7 +30,7 @@ public class CategoriaController {
         this.categoriaMapper = categoriaMapper;
     }
 
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity<DTOCategoriaRespuesta> agregarCategoria(@RequestBody DTOCategoriaPeticion bodyPeticion) {
         Categoria objCategoriaMapeada = categoriaMapper.mapearDePeticionACategoria(bodyPeticion);
         Categoria creada = categoriaService.agregarCategoria(objCategoriaMapeada);
@@ -41,7 +41,7 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @GetMapping("/listCategorias")
+    @GetMapping("/consultar")
     public ResponseEntity<List<DTOCategoriaRespuesta>> listarCategorias() {
         List<Categoria> categoriasEncontradas = categoriaService.listarCategorias();
         ResponseEntity<List<DTOCategoriaRespuesta>> respuesta = new ResponseEntity<>(
@@ -51,7 +51,7 @@ public class CategoriaController {
         return respuesta;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/consultar/{id}")
     public ResponseEntity<DTOCategoriaRespuesta> obtenerCategoriaPorId(@PathVariable Long id) {
         Categoria categoriaEncontrada = categoriaService.obtenerCategoriaPorId(id);
         ResponseEntity<DTOCategoriaRespuesta> respuesta = new ResponseEntity<>(
