@@ -90,4 +90,37 @@ public class ProductoGatewayAdapter implements GestionProductosGateway {
         Producto productoRetornado = productMapper.map(productoGuardado, Producto.class);
         return productoRetornado;
     }
+
+    @Override
+    public List<Producto> listarProductosByZonaVeredal(Long prmIdZona) {
+        // Buscar productos asociados a la zona veredal
+        List<ProductEntity> productosZona = BDProductoRegister.findAllByZonaVeredalId(prmIdZona);
+
+        if (productosZona.isEmpty()) {
+            throw new RuntimeException("No existen productos asociados a la zona veredal con id: " + prmIdZona);
+        }
+
+        // Mapear a objetos de dominio
+        List<Producto> productosRetornados = productMapper.map(productosZona, new TypeToken<List<Producto>>() {}.getType());
+        return productosRetornados;
+    }
+
+    @Override
+    public List<Producto> listarProductosByCategorias(List<Long> prmIDsCategorias) {
+        // Validar que se haya pasado al menos un id
+        if (prmIDsCategorias == null || prmIDsCategorias.isEmpty()) {
+            throw new IllegalArgumentException("Debe proporcionar al menos un ID de categoría.");
+        }
+
+        // Buscar productos que pertenezcan a las categorías indicadas
+        List<ProductEntity> productosCategoria = BDProductoRegister.findAllByCategoryIds(prmIDsCategorias);
+
+        if (productosCategoria.isEmpty()) {
+            throw new RuntimeException("No existen productos asociados a las categorías proporcionadas: " + prmIDsCategorias);
+        }
+
+        // Mapear a objetos de dominio
+        List<Producto> productosRetornados = productMapper.map(productosCategoria, new TypeToken<List<Producto>>() {}.getType());
+        return productosRetornados;
+    }
 }

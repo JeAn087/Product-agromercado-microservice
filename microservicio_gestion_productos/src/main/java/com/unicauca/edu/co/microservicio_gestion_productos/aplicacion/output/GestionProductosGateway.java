@@ -23,4 +23,7 @@ public interface GestionProductosGateway {
 
     Producto cambiarDisponibilidad(Long prmIdProducto);
 
+    List<Producto> listarProductosByZonaVeredal(Long prmIdZona);
+
+    List<Producto> listarProductosByCategorias(List<Long> prmIDsCategorias);
 }

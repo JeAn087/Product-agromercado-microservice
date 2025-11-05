@@ -23,6 +23,7 @@ public class Producto {
     private List<Categoria> productCategory;/**Uso del agregado*/
     private Disponibilidad productDisposition;/**Uso del objeto de valor*/
     private String productDescription;/**Descripcion del producto */
+    private List<ZonaVeredal> productZones;/**Uso del agregado */
 
     /**
      * Método que permite virificar que el stock sea positivo

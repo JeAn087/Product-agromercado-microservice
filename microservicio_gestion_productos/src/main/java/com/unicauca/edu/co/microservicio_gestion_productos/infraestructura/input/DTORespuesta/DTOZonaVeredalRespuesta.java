@@ -1,7 +1,5 @@
 package com.unicauca.edu.co.microservicio_gestion_productos.infraestructura.input.DTORespuesta;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +15,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class DTOProductoRespuesta {
-    private Long productoId;/**<!Identificador único del producto */
-    private String productName;/**Nombre del producto*/
-    private List<DTOCategoriaRespuesta> productCategory;/**Uso del agregado*/
-    private DTODisponibilidadRespuesta productDisposition;/**Uso del objeto de valor*/
-    private String productDescription;/**Descripcion del producto */
-    private List<DTOZonaVeredalRespuesta> productZones;
+public class DTOZonaVeredalRespuesta {
+    private Long zonaId;
+    private String nombre;
+    private String descripcion;
+    private String ubicacion;
 }

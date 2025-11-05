@@ -22,4 +22,8 @@ public interface GestionProductosPort {
     List<Producto> listarProductos();
 
     Producto cambiarDisponibilidad(Long prmIdProducto);
+
+    List<Producto> listarProductosByZonaVeredal(Long prmIdZona);
+
+    List<Producto> listarProductosByCategorias(List<Long> prmIDsCategorias);
 }

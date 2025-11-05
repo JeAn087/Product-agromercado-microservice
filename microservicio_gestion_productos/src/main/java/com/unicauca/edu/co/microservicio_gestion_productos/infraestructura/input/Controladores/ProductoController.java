@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unicauca.edu.co.microservicio_gestion_productos.aplicacion.input.GestionProductosPort;
@@ -94,5 +95,24 @@ public class ProductoController {
             HttpStatus.OK
         );
         return respuesta;
+    }
+
+    @GetMapping("/consultar/porZona/{id}")
+    public ResponseEntity<List<DTOProductoRespuesta>> obtenerProductosPorZona(@PathVariable Long id) {
+        List<Producto> productosZona = productoService.listarProductosByZonaVeredal(id);
+        return new ResponseEntity<>(
+                productoMapper.mapearDeListaProductoAListaRespuesta(productosZona),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/consultar/porCategoria")
+    public ResponseEntity<List<DTOProductoRespuesta>> obtenerProductosPorCategoria(
+        @RequestParam List<Long> ids) {
+        List<Producto> productosCategoria = productoService.listarProductosByCategorias(ids);
+        return new ResponseEntity<>(
+                productoMapper.mapearDeListaProductoAListaRespuesta(productosCategoria),
+                HttpStatus.OK
+        );
     }
 }

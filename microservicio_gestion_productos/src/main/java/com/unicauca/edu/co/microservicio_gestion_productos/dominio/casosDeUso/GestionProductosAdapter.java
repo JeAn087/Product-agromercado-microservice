@@ -58,5 +58,13 @@ public class GestionProductosAdapter implements GestionProductosPort{
     public Producto cambiarDisponibilidad(Long prmIdProducto) {
         return gatewayProductos.cambiarDisponibilidad(prmIdProducto);
     }
+    @Override
+    public List<Producto> listarProductosByZonaVeredal(Long prmIdZona) {
+        return gatewayProductos.listarProductosByZonaVeredal(prmIdZona);
+    }
+    @Override
+    public List<Producto> listarProductosByCategorias(List<Long> prmIDsCategorias) {
+        return gatewayProductos.listarProductosByCategorias(prmIDsCategorias);
+    }
 
 }

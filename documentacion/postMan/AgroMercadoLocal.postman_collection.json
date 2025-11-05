@@ -54,6 +54,71 @@
 							"response": []
 						},
 						{
+							"name": "ListarProductosByCategorias",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9090/api/producto/consultar/porCategoria?ids=1&ids=2",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto",
+										"consultar",
+										"porCategoria"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "1"
+										},
+										{
+											"key": "ids",
+											"value": "2"
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ListarProductosPorZonaVeredal",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9090/api/producto/consultar/porZona/8",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"producto",
+										"consultar",
+										"porZona",
+										"8"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Agregar Producto con categoria existente",
 							"request": {
 								"method": "POST",

@@ -56,10 +56,12 @@ public class ProductoInfraDominioMapper {
 
         if(prmProducto.getProductCategory() != null)
         {
-            productoReturn.setProductCategory(prmProducto.getProductCategory().stream()
+            productoReturn.setProductCategory(new CategoriaInfraDominioMapper()
+            .mapearDeListaCategoriaAListaRespuesta(prmProducto.getProductCategory()));
+            /* productoReturn.setProductCategory(prmProducto.getProductCategory().stream()
             .map(categoria -> new CategoriaInfraDominioMapper().mapearDeCategoriaARespuesta(categoria))
             .toList()
-            );
+            ); */
         }
 
         if(prmProducto.getProductDisposition() != null) 
@@ -68,6 +70,12 @@ public class ProductoInfraDominioMapper {
             .mapearDisponibilidadRespuesta(prmProducto.getProductDisposition()));
         }
         
+        if(prmProducto.getProductZones() != null)
+        {
+            productoReturn.setProductZones(new ZonaVeredalInfraDominioMapper()
+            .mapearDeListaProductoAListaRespuesta(prmProducto.getProductZones()));
+        }
+
         return productoReturn;
     }
 
